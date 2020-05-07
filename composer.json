@@ -1,7 +1,7 @@
 {
-    "name": "grozzzny/editable",
-    "description": "Editable for EasyiiCMS",
-    "keywords": ["yii", "easyiiCMS", "CMS", "module"],
+    "name": "grozzzny/admin",
+    "description": "Admin module for Yii2",
+    "keywords": ["yii", "module"],
     "type": "yii2-extension",
     "minimum-stability": "dev",
     "license": "MIT",
@@ -9,18 +9,15 @@
         {
             "name": "Dmitriy Groznyy",
             "email": "grozzzny@gmail.com",
-            "homepage": "http://pr-kenig.ru"
+            "homepage": "https://pr-kenig.ru"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "grozzzny/widgets": "dev-master",
-        "black-lamp/yii2-text-editor": "1.0.0",
-        "yiisoft/yii2": "*"
+        "php": ">=5.6.0"
     },
     "autoload": {
         "psr-4": {
-            "grozzzny\\editable\\": ""
+            "grozzzny\\admin\\": ""
         }
     }
 }
