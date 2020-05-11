@@ -23,6 +23,32 @@ Add following lines to your main configuration file:
         'class' => 'grozzzny\admin\AdminModule',
     ],
 ],
+
+$config['modules']['gii'] = [
+    'class'      => 'yii\gii\Module',
+    'generators' => [
+        'crud'   => [
+            'class'     => 'yii\gii\generators\crud\Generator',
+            'templates' => [
+                'admin' => '@grozzzny/admin/templates/crud'
+            ]
+        ]
+    ]
+];
+
+```
+
+Add following lines to your console configuration file:
+
+```php
+'controllerMap' => [
+    'migrate' => [
+        'class' => 'yii\console\controllers\MigrateController',
+        'migrationPath' => [
+            '@grozzzny/admin/migrations',
+        ],
+    ],
+],
 ```
 
 
