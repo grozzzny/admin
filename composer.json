@@ -14,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.6.0",
-        "yiisoft/yii2-bootstrap4": "^2.0"
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "xtetis/yii2-bootstrap4-glyphicons": "*"
     },
     "autoload": {
         "psr-4": {
