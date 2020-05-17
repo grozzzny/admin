@@ -9,12 +9,29 @@ $this->title = Yii::t('app', 'Create Admin Text');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Admin Texts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="admin-text-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="row page-title-header">
+    <div class="col-12">
+        <div class="page-header">
+            <h4 class="page-title"><?= Html::encode($this->title) ?></h4>
+        </div>
+    </div>
+</div>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+<div class="row">
+    <div class="col-md-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
 
+                <div class="admin-text-create">
+
+                    <?= $this->render('_form', [
+                        'model' => $model,
+                    ]) ?>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>

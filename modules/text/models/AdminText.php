@@ -30,7 +30,7 @@ use Yii;
  * Message Category
  * app
  * Code Template
- * default (C:\OSPanel\domains\case\www\vendor\yiisoft\yii2-gii\src\generators\crud/default)
+ * admin (C:\OSPanel\domains\case\www\vendor/grozzzny/admin/templates/crud/default)
  */
 class AdminText extends \yii\db\ActiveRecord
 {
@@ -50,7 +50,7 @@ class AdminText extends \yii\db\ActiveRecord
         return [
             [['slug'], 'required'],
             [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
-            [['slug', 'text'], 'string', 'max' => 255],
+            [['text'], 'string', 'max' => 255],
         ];
     }
 

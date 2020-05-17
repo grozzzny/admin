@@ -28,5 +28,7 @@ class AdminAsset extends \yii\web\AssetBundle
 
     public $depends = [
         'yii\web\YiiAsset',
+        'yii\bootstrap4\BootstrapPluginAsset',
+        'xtetis\bootstrap4glyphicons\assets\GlyphiconAsset',
     ];
 }
