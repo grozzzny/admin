@@ -47,7 +47,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
             'text',
 
-                            ['class' => 'yii\grid\ActionColumn'],
+                            [
+                                'class' => 'yii\grid\ActionColumn',
+                                'buttonOptions' => ['class' => 'btn btn-default'],
+                                'buttons' => [
+                                    'update' => function($name, $model, $key){
+                                        return Html::a('<i class="fas fa-pencil-alt mr-0" aria-hidden="true"></i>', ['update', 'id' => $model->primaryKey], ['class' => 'btn btn-primary']);
+                                    },
+                                    'delete' => function($name, $model, $key){
+                                        return Html::a('<i class="fas fa-trash mr-0" aria-hidden="true"></i>', ['delete', 'id' => $model->primaryKey], [
+                                            'class' => 'btn btn-primary',
+                                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                            'data-method' => 'post',
+                                        ]);
+                                    }
+                                ]
+                            ],
                         ],
                     ]); ?>
                 
