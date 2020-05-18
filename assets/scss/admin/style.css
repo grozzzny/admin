@@ -446,12 +446,14 @@
   width: 2px;
   background: #1026de;
 }
-.sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link:hover,
-.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link:hover {
+.sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link:hover, .sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link.active,
+.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link:hover,
+.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link.active {
   color: #fff;
 }
-.sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link:hover:before,
-.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link:hover:before {
+.sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link:hover:before, .sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item .nav-link.active:before,
+.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link:hover:before,
+.sidebar > .nav .nav-item:not(.hover-open) .collapsing .sub-menu .nav-item .nav-link.active:before {
   background: #fff;
 }
 .sidebar > .nav .nav-item:not(.hover-open) .collapse .sub-menu .nav-item:first-child .nav-link,

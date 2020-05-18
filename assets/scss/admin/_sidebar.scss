@@ -51,7 +51,7 @@
                   background: $sidebar-light-submenu-line-color;
                 }
 
-                &:hover {
+                &:hover, &.active {
                   color: $sidebar-light-menu-color;
 
                   &:before {
