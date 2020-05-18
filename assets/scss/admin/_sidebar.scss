@@ -234,24 +234,22 @@
           transition-property: "background", "color", "box-shadow", "padding";
         }
 
-        &:hover {
-          &:not(.nav-profile):not(.hover-open) {
-            >.nav-link:not([aria-expanded="true"]) {
-              background: $sidebar-light-menu-hover-bg;
-              padding-left: 65px;
+        &:not(.nav-profile):not(.hover-open) {
+          >.nav-link:not([aria-expanded="true"]):hover, >.nav-link.active:not([aria-expanded="true"])  {
+            background: $sidebar-light-menu-hover-bg;
+            padding-left: 65px;
 
+            &:before {
+              border-color: $sidebar-light-menu-hover-color;
+            }
+
+            .menu-title {
+              color: $sidebar-light-menu-hover-color;
+            }
+
+            .menu-arrow {
               &:before {
-                border-color: $sidebar-light-menu-hover-color;
-              }
-
-              .menu-title {
-                color: $sidebar-light-menu-hover-color;
-              }
-
-              .menu-arrow {
-                &:before {
-                  color: $sidebar-light-menu-arrow-color;
-                }
+                color: $sidebar-light-menu-arrow-color;
               }
             }
           }

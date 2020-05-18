@@ -585,17 +585,17 @@
   transition-timing-function: "ease-in-out";
   transition-property: "background", "color", "box-shadow", "padding";
 }
-.sidebar > .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]) {
+.sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]):hover, .sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link.active:not([aria-expanded=true]) {
   background: #0f25d5;
   padding-left: 65px;
 }
-.sidebar > .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]):before {
+.sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]):hover:before, .sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link.active:not([aria-expanded=true]):before {
   border-color: #fff;
 }
-.sidebar > .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]) .menu-title {
+.sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]):hover .menu-title, .sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link.active:not([aria-expanded=true]) .menu-title {
   color: #fff;
 }
-.sidebar > .nav:not(.sub-menu) > .nav-item:hover:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]) .menu-arrow:before {
+.sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link:not([aria-expanded=true]):hover .menu-arrow:before, .sidebar > .nav:not(.sub-menu) > .nav-item:not(.nav-profile):not(.hover-open) > .nav-link.active:not([aria-expanded=true]) .menu-arrow:before {
   color: #bfccda;
 }
 
