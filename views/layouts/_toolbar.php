@@ -42,7 +42,7 @@ echo Nav::widget([
              'visible' => $hasLiveEdit === true
          ],
          [
-             'label' => Yii::t('app', 'Exit'),
+             'label' => Yii::t('app', 'Sign Out'),
              'url' => ['/admin/default/logout']
          ],
      ],
