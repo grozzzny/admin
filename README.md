@@ -18,6 +18,7 @@ $ php composer.phar require grozzzny/admin "dev-master"
 Add following lines to your main configuration file:
 
 ```php
+'bootstrap' => ['admin'],
 'modules' => [
     'admin' => [
         'class' => 'grozzzny\admin\AdminModule',

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace grozzzny\admin\widgets;
+namespace grozzzny\admin\widgets\live_edit;
 
 
 use grozzzny\admin\AdminModule;
@@ -17,6 +17,17 @@ use yii\helpers\Html;
  */
 class LiveEditWidget extends Widget
 {
+    protected function renderAdminLinks($text, $linkCreate, $linkUpdate)
+    {
+        if(!$this->access()) return $text;
+
+        if(empty($text)) return $this->renderLinkCreate($linkCreate);
+
+        if($this->module->hasLiveEdit()) return $this->renderLinkUpdate($linkUpdate, $text);
+
+        return $text;
+    }
+
     protected function renderLinkCreate($url)
     {
         $label = Yii::t('app', 'Create text');
@@ -39,6 +50,7 @@ class LiveEditWidget extends Widget
 
     protected function access()
     {
-        return Yii::$app->user->can($this->module->live_edit_role);
+        $module = $this->module;
+        return $module::can($module->live_edit_role);
     }
 }

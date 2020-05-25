@@ -47,15 +47,18 @@ class DefaultController extends Controller
     /**
      * Creates a new AdminText model.
      * If creation is successful, the browser will be redirected to the 'view' page.
+     * @param string $slug
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($slug = null)
     {
         $model = new AdminText();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
+
+        if(!empty($slug)) $model->slug = $slug;
 
         return $this->render('create', [
             'model' => $model,
@@ -66,12 +69,13 @@ class DefaultController extends Controller
      * Updates an existing AdminText model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
+     * @param string $slug
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id, $slug = null)
     {
-        $model = $this->findModel($id);
+        $model = empty($slug) ? $this->findModel($id) : $this->findModelBySlug($slug);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,6 +110,15 @@ class DefaultController extends Controller
     protected function findModel($id)
     {
         if (($model = AdminText::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+    protected function findModelBySlug($slug)
+    {
+        if (($model = AdminText::findOne(['slug' => $slug])) !== null) {
             return $model;
         }
 

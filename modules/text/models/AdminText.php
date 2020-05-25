@@ -49,6 +49,7 @@ class AdminText extends \yii\db\ActiveRecord
     {
         return [
             [['slug'], 'required'],
+            [['slug'], 'unique'],
             [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
             [['text'], 'string', 'max' => 255],
         ];
