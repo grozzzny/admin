@@ -5,7 +5,6 @@ namespace grozzzny\admin;
 
 
 use Yii;
-use yii\base\Application;
 use yii\base\BootstrapInterface;
 use yii\base\Module;
 use yii\web\View;
@@ -15,7 +14,9 @@ class AdminModule extends Module implements BootstrapInterface
     const LIVE_EDIT_KEY = 'live_edit';
 
     public $live_edit_role = '@';
+
     public $render_toolbar_role = '@';
+
     public $view_path_toolbar = '@grozzzny/admin/views/layouts/_toolbar';
 
     public $nav_items = [

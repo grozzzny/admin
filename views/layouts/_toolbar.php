@@ -11,6 +11,14 @@ use yii\web\View;
 
 $module = AdminModule::instance();
 $hasLiveEdit = $module->hasLiveEdit();
+
+$css = <<<CSS
+    body{
+        padding-bottom: 60px;
+    }
+CSS;
+
+$this->registerCss($css);
 ?>
 
 <?
