@@ -36,20 +36,25 @@ class LiveEditWidget extends Widget
 
     protected function renderAdminLinks($text, $linkCreate, $linkUpdate)
     {
-        if(!$this->access()) return $text;
+        if(!$this->access()) return empty($text) ? $this->getLabel() : $text;
 
         if(empty($text)) return $this->renderLinkCreate($linkCreate);
 
         if($this->module->hasLiveEdit()) return $this->renderLinkUpdate($linkUpdate, $text);
 
-        return $text;
+        return empty($text) ? $this->getLabel() : $text;
     }
 
     protected function renderLinkCreate($url)
     {
-        $label = empty($this->label) ? Yii::t('app', 'Create text') : $this->label;
+        $label = $this->getLabel();
 
         return $this->renderLink($url, $label);
+    }
+
+    protected function getLabel()
+    {
+        return empty($this->label) ? Yii::t('app', 'Create text') : $this->label;
     }
 
     protected function renderLinkUpdate($url, $text)
