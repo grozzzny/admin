@@ -8,6 +8,7 @@ use grozzzny\admin\AdminModule;
 use Yii;
 use yii\base\Widget;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * Class LiveEditWidget
@@ -17,6 +18,14 @@ use yii\helpers\Html;
  */
 class LiveEditWidget extends Widget
 {
+    public $label;
+
+    public function init()
+    {
+        $this->view->registerAssetBundle(LiveEditAsset::className());
+        parent::init();
+    }
+
     protected function renderAdminLinks($text, $linkCreate, $linkUpdate)
     {
         if(!$this->access()) return $text;
@@ -30,16 +39,21 @@ class LiveEditWidget extends Widget
 
     protected function renderLinkCreate($url)
     {
-        $label = Yii::t('app', 'Create text');
+        $label = empty($this->label) ? Yii::t('app', 'Create text') : $this->label;
 
-        return Html::a($label, $url, ['target' => '_blank']);
+        return $this->renderLink($url, $label);
     }
 
     protected function renderLinkUpdate($url, $text)
     {
+        return $this->renderLink($url, $text);
+    }
+
+    protected function renderLink($url, $text)
+    {
         return Html::tag('span', $text, [
             'class' => 'admin-live-edit',
-            'onclick' => 'location.href = "'.$url.'"'
+            'onclick' => 'window.open("'.Url::to($url).'", "_blank")'
         ]);
     }
 

@@ -1,19 +1,10 @@
 <?php
-namespace grozzzny\depends\nested;
+namespace grozzzny\admin\widgets\live_edit;
 
-use yii\web\View;
-
-class NestedAsset extends \yii\web\AssetBundle
+class LiveEditAsset extends \yii\web\AssetBundle
 {
-    public $sourcePath = '@grozzzny/depends/nested';
-    public $js = [
-        'js/jquery.fittext.js',
-        'js/jquery.nested.js',
-    ];
-    public $depends = [
-        'yii\web\JqueryAsset',
-    ];
-    public $jsOptions = [
-        'position' => View::POS_HEAD
+    public $sourcePath = '@grozzzny/admin/widgets/live_edit';
+    public $css = [
+        'admin-live-edit.css',
     ];
 }

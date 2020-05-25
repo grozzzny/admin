@@ -73,7 +73,7 @@ class DefaultController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id, $slug = null)
+    public function actionUpdate($id = null, $slug = null)
     {
         $model = empty($slug) ? $this->findModel($id) : $this->findModelBySlug($slug);
 
