@@ -11,7 +11,7 @@ use grozzzny\admin\widgets\live_edit\LiveEditWidget;
  * Class LiveEditText
  * @package grozzzny\admin\modules\text
  *
- * @property-read string|null $text
+ * @property-read string|null $textModel
  */
 class LiveEditText extends LiveEditWidget
 {
@@ -19,12 +19,12 @@ class LiveEditText extends LiveEditWidget
 
     public function run()
     {
-        $text = $this->text;
+        $text = $this->textModel;
 
         return $this->renderAdminLinks($text, ['/admin/text/default/create', 'slug' => $this->slug], ['/admin/text/default/update', 'slug' => $this->slug]);
     }
 
-    protected function getText()
+    protected function getTextModel()
     {
         $model = AdminText::findOne(['slug' => $this->slug]);
 

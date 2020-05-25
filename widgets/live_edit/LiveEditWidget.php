@@ -19,11 +19,19 @@ use yii\helpers\Url;
 class LiveEditWidget extends Widget
 {
     public $label;
+    public $text;
+    public $linkCreate = [];
+    public $linkUpdate = [];
 
     public function init()
     {
         $this->view->registerAssetBundle(LiveEditAsset::className());
         parent::init();
+    }
+
+    public function run()
+    {
+        return $this->renderAdminLinks($this->text, $this->linkCreate, $this->linkUpdate);
     }
 
     protected function renderAdminLinks($text, $linkCreate, $linkUpdate)
