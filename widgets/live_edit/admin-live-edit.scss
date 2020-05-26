@@ -1,22 +1,9 @@
 .admin-live-edit{
   position: relative;
   cursor: pointer;
-  &:before{
-    content: ' ';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 10px 0px #868686;
-    visibility: hidden;
-    transition: 0.4s all ease;
-    opacity: 0;
-}
   &:hover{
-    &:before{
-      visibility: visible;
-      opacity: 1;
-    }
+    text-decoration: underline;
+    text-decoration-color: #017bff;
+    text-decoration-skip-ink: none;
   }
 }
