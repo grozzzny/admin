@@ -38,9 +38,11 @@ class LiveEditWidget extends Widget
     {
         if(!$this->access()) return empty($text) ? $this->getLabel() : $text;
 
-        if(empty($text)) return $this->renderLinkCreate($linkCreate);
+        if($this->module->hasLiveEdit()) {
+            if(empty($text)) return $this->renderLinkCreate($linkCreate);
 
-        if($this->module->hasLiveEdit()) return $this->renderLinkUpdate($linkUpdate, $text);
+            return $this->renderLinkUpdate($linkUpdate, $text);
+        }
 
         return empty($text) ? $this->getLabel() : $text;
     }
