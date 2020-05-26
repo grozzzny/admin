@@ -31,7 +31,7 @@ $asset = AdminAsset::register($this);
                         <img class="img-md rounded-circle" src="<?=$asset->baseUrl?>/images/nophoto.jpeg" alt="Profile image">
                         <p class="mb-1 mt-3 font-weight-semibold"><?=Yii::$app->user->identity->username?></p>
                     </div>
-                    <a class="dropdown-item"><?=Yii::t('app', 'Sign Out')?><i class="dropdown-item-icon ti-power-off"></i></a>
+                    <a href="<?=Url::to(['/admin/default/logout'])?>" class="dropdown-item"><?=Yii::t('app', 'Sign Out')?><i class="dropdown-item-icon ti-power-off"></i></a>
                 </div>
             </li>
         </ul>
