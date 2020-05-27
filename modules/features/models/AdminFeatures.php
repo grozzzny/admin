@@ -38,6 +38,10 @@ class AdminFeatures extends \yii\db\ActiveRecord
                 'fileAttribute' => 'image',
                 'uploadPath' => '/uploads/features',
             ],
+            'position' => [
+                'class' => 'grozzzny\admin\behaviors\PositionBehavior',
+                'attribute' => 'position'
+            ]
         ]);
     }
 

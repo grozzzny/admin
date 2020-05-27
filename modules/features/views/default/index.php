@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
             'description',
             //'link',
-            //'position',
+            'position',
             //'active',
 
                             [
