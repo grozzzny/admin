@@ -75,7 +75,7 @@ class PositionBehavior extends Behavior
             ->andWhere(['!=', $key, $model->primaryKey])
             ->all();
 
-        array_splice( $allModels, $position, 0, [$model]);
+        array_splice( $allModels, (integer) $position - 1, 0, [$model]);
 
         foreach ($allModels as $i => $item){
             $item::updateAll([$attribute => $i + 1], [$key => $item->primaryKey]);
