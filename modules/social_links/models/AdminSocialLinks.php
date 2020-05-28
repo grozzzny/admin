@@ -3,6 +3,7 @@
 namespace grozzzny\admin\modules\social_links\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "admin_social_links".
@@ -24,6 +25,16 @@ class AdminSocialLinks extends \yii\db\ActiveRecord
         return 'admin_social_links';
     }
 
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'position' => [
+                'class' => 'grozzzny\admin\behaviors\PositionBehavior',
+                'attribute' => 'position'
+            ]
+        ]);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -32,6 +43,8 @@ class AdminSocialLinks extends \yii\db\ActiveRecord
         return [
             [['position', 'active'], 'integer'],
             [['title', 'link', 'icon'], 'string', 'max' => 255],
+            [['icon'], 'required'],
+            [['active'], 'default', 'value' => true],
         ];
     }
 

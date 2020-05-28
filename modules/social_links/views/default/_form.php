@@ -20,7 +20,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'position')->textInput() ?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
+    <?= $form->field($model, 'active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
