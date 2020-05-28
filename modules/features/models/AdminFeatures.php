@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\features\models;
 
+use grozzzny\admin\helpers\Image;
 use grozzzny\admin\widgets\file_input\components\FileBehavior;
 use grozzzny\admin\widgets\live_edit\LiveEditWidget;
 use Yii;
@@ -54,7 +55,7 @@ class AdminFeatures extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['image'], 'file', 'extensions' => 'png, jpg'],
+            [['image'], 'image'],
             [['position', 'active'], 'integer'],
             [['title'], 'required'],
             [['active'], 'default', 'value' => true],
@@ -77,6 +78,17 @@ class AdminFeatures extends \yii\db\ActiveRecord
             'position' => Yii::t('app', 'Position'),
             'active' => Yii::t('app', 'Active'),
         ];
+    }
+
+    public function getImage($width = null, $height = null)
+    {
+        if(!isset(Yii::$app->params['noimage'])) return Image::thumb($this->image, $width, $height);
+
+        $path = empty($this->image) ? Yii::$app->params['noimage'] : $this->image;
+
+        $image = Image::thumb($path, $width, $height);
+
+        return empty($image) ? Image::thumb(Yii::$app->params['noimage'], $width, $height) : $image;
     }
 
     public function getLiveEditTitle()

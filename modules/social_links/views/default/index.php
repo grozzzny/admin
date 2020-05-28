@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             [
                                 'class' => 'yii\grid\ActionColumn',
+                                'template' => '<div class="text-nowrap">{update} {delete}</div>',
                                 'buttonOptions' => ['class' => 'btn btn-default'],
                                 'buttons' => [
                                     'update' => function($name, $model, $key){

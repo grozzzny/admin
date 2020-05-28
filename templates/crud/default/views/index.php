@@ -83,6 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'buttonOptions' => ['class' => 'btn btn-default'],
+                                'template' => '<div class="text-nowrap">{update} {delete}</div>',
                                 'buttons' => [
                                     'update' => function($name, $model, $key){
                                         return Html::a('<i class="fas fa-pencil-alt mr-0" aria-hidden="true"></i>', ['update', 'id' => $model->primaryKey], ['class' => 'btn btn-primary']);

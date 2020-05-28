@@ -1,5 +1,6 @@
 <?php
 
+use grozzzny\admin\widgets\file_input\ImageInputWidget;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -12,7 +13,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->widget(ImageInputWidget::className()) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
@@ -20,15 +21,7 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'position')->textInput() ?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <?= $form->field($model, 'active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
