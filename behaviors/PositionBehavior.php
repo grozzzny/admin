@@ -4,7 +4,6 @@
 namespace grozzzny\admin\behaviors;
 
 
-use Yii;
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
 
@@ -79,8 +78,7 @@ class PositionBehavior extends Behavior
         array_splice( $allModels, $position, 0, [$model]);
 
         foreach ($allModels as $i => $item){
-            $currentPosition = $i + 1;
-            $item::updateAll([$attribute => $currentPosition], [$key => $item->primaryKey]);
+            $item::updateAll([$attribute => $i + 1], [$key => $item->primaryKey]);
         }
     }
 }

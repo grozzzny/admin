@@ -3,6 +3,7 @@
 namespace grozzzny\admin\modules\features\models;
 
 use grozzzny\admin\widgets\file_input\components\FileBehavior;
+use grozzzny\admin\widgets\live_edit\LiveEditWidget;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -19,6 +20,8 @@ use yii\helpers\ArrayHelper;
  * @property string|null $link
  * @property int|null $position
  * @property int|null $active
+ *
+ * @property-read string $liveEditTitle
  */
 class AdminFeatures extends \yii\db\ActiveRecord
 {
@@ -74,5 +77,14 @@ class AdminFeatures extends \yii\db\ActiveRecord
             'position' => Yii::t('app', 'Position'),
             'active' => Yii::t('app', 'Active'),
         ];
+    }
+
+    public function getLiveEditTitle()
+    {
+        return LiveEditWidget::widget([
+            'text' => $this->title,
+            'linkCreate' => ['/admin/features/default/create'],
+            'linkUpdate' => ['/admin/features/default/update', 'id' => $this->primaryKey]
+        ]);
     }
 }

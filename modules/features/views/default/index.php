@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             'id',
             'icon',
-            'image',
+            //'image',
             'title',
             'description',
             //'link',
