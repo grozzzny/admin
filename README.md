@@ -19,12 +19,14 @@ Add following lines to your main configuration file:
 
 ```php
 'bootstrap' => ['admin'],
+'controllerMap' => [
+    'feedback' => 'grozzzny\admin\modules\feedback\widgets\form\controllers\DefaultController'
+],
 'modules' => [
     'admin' => [
         'class' => 'grozzzny\admin\AdminModule',
     ],
 ],
-
 $config['modules']['gii'] = [
     'class'      => 'yii\gii\Module',
     'generators' => [

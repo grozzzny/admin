@@ -47,6 +47,8 @@ class AdminFeedback extends \yii\db\ActiveRecord
         return [
             [['active', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'email', 'phone', 'message'], 'string', 'max' => 255],
+            [['message'], 'required'],
+            [['active'], 'default', 'value' => true],
         ];
     }
 
