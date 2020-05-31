@@ -45,9 +45,11 @@ class AdminFeedback extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['active', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'email', 'phone', 'message'], 'string', 'max' => 255],
+            [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['name', 'phone', 'message'], 'string', 'max' => 255],
             [['message'], 'required'],
+            [['email'], 'email'],
+            [['active'], 'boolean'],
             [['active'], 'default', 'value' => true],
         ];
     }

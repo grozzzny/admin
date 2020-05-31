@@ -18,15 +18,34 @@ $ php composer.phar require grozzzny/admin "dev-master"
 Add following lines to your main configuration file:
 
 ```php
-'bootstrap' => ['admin'],
-'controllerMap' => [
-    'feedback' => 'grozzzny\admin\modules\feedback\widgets\form\controllers\DefaultController'
-],
-'modules' => [
-    'admin' => [
-        'class' => 'grozzzny\admin\AdminModule',
+$config = [
+    ...
+    'bootstrap' => ['admin'],
+    ...
+    'controllerMap' => [
+         'feedback' => [
+             'class' => 'grozzzny\admin\modules\feedback\widgets\form\controllers\DefaultController',
+             'on submit' => ['grozzzny\admin\modules\feedback\widgets\form\components\SubmitHandler', 'submit']
+         ]
     ],
-],
+    ...
+    'modules' => [
+        ...
+        'admin' => [
+            'class' => 'grozzzny\admin\AdminModule',
+        ],
+        ...
+    ],
+    ...
+    'params' => [
+       'adminEmail' => 'admin@example.com',
+       'senderEmail' => 'noreply@example.com',
+       'senderName' => 'Example.com mailer',
+       'noimage' => '/images/noimage.jpg',
+    ],
+    ...
+];
+
 $config['modules']['gii'] = [
     'class'      => 'yii\gii\Module',
     'generators' => [

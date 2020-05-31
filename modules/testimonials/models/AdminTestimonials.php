@@ -63,6 +63,8 @@ class AdminTestimonials extends \yii\db\ActiveRecord
             [['active'], 'default', 'value' => true],
             [['position', 'active', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'description'], 'string', 'max' => 255],
+            [['active'], 'boolean'],
+            [['active'], 'default', 'value' => true],
             [['description'], 'required'],
         ];
     }

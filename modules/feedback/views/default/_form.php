@@ -18,17 +18,9 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'message')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'message')->textarea() ?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
+    <?= $form->field($model, 'active')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

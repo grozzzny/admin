@@ -41,9 +41,10 @@ class AdminSocialLinks extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['position', 'active'], 'integer'],
+            [['position'], 'integer'],
             [['title', 'link', 'icon'], 'string', 'max' => 255],
             [['icon'], 'required'],
+            [['active'], 'boolean'],
             [['active'], 'default', 'value' => true],
         ];
     }

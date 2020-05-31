@@ -4,6 +4,7 @@
 namespace grozzzny\admin\modules\feedback\widgets\form\controllers;
 
 use grozzzny\admin\modules\feedback\models\AdminFeedback;
+use grozzzny\admin\modules\feedback\widgets\form\events\SubmitEvent;
 use Yii;
 use yii\base\Exception;
 use yii\web\Controller;
@@ -12,6 +13,8 @@ use yii\widgets\ActiveForm;
 
 class DefaultController extends Controller
 {
+    const EVENT_SUBMIT = 'submit';
+
     public function behaviors()
     {
         return [
@@ -40,7 +43,6 @@ class DefaultController extends Controller
     {
         $model = $this->model();
         if ($model->load(Yii::$app->request->post())) {
-//            Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
     }
@@ -49,11 +51,12 @@ class DefaultController extends Controller
     {
         $model = $this->model();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-//            Yii::$app->response->format = Response::FORMAT_JSON;
             if($model->save()) {
+                $event = Yii::createObject(['class' => SubmitEvent::className(), 'model' => $model]);
+                $this->trigger(static::EVENT_SUBMIT, $event);
                 return true;
             } else {
-                throw new Exception(Yii::t('yii', 'Error'));
+                throw new Exception(Yii::t('app', 'Error save. '. json_encode($model->errors, JSON_UNESCAPED_UNICODE)));
             }
         }
     }

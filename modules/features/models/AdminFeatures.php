@@ -56,8 +56,9 @@ class AdminFeatures extends \yii\db\ActiveRecord
     {
         return [
             [['image'], 'image'],
-            [['position', 'active'], 'integer'],
+            [['position'], 'integer'],
             [['title'], 'required'],
+            [['active'], 'boolean'],
             [['active'], 'default', 'value' => true],
             [['icon', 'title', 'description', 'link'], 'string', 'max' => 255],
         ];
