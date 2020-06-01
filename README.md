@@ -1,10 +1,18 @@
-Admin module for Yii2 
+Admin panel - module for Yii2 
 ==============================
 
 This module allows to [yiiframework](https://www.yiiframework.com) 
-Dashboard Bootstrap 4 [Dashboard](https://www.bootstrapdash.com/demo/star-admin-free/jquery/src/demo_1/index.html#) 
+Dashboard Bootstrap 4. [Dashboard demo](https://www.bootstrapdash.com/demo/star-admin-free/jquery/src/demo_1/index.html#) 
 
 ![alt text](https://raw.githubusercontent.com/grozzzny/admin/master/assets/images/2020-06-01_20-41-05.png)
+
+#### Live edit and admin navbar
+
+![alt text](https://raw.githubusercontent.com/grozzzny/admin/master/assets/images/2020-06-01_20-49-59.png)
+
+#### CRUD gii
+
+![alt text](https://raw.githubusercontent.com/grozzzny/admin/master/assets/images/2020-06-01_20-55-25.png)
 
 ### Installation guide
 
@@ -48,6 +56,9 @@ $config = [
              'as access' => [
                  'class' => 'grozzzny\admin\behaviors\AccessControl',
              ],
+             'live_edit_role' => '@',
+             'render_toolbar_role' => '@',
+             'view_path_toolbar' => '@grozzzny/admin/views/layouts/_toolbar',
              'nav_items' => [
                  [
                      'label' => 'Начальная',
@@ -147,3 +158,8 @@ Run migrations
 ```bash
 php yii migrate
 ```
+
+
+#### Example module pages with SEO behavior (Polymorphic relationship)
+
+![alt text](https://raw.githubusercontent.com/grozzzny/admin/master/assets/images/2020-06-01_20-59-21.png)
