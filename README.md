@@ -31,8 +31,75 @@ $config = [
     ...
     'modules' => [
         ...
+         // https://imperavi.com/redactor/docs/settings/
+         'redactor' => [
+             'class' => 'yii\redactor\RedactorModule',
+              'as access' => [
+                  'class' => 'grozzzny\admin\behaviors\AccessControl',
+              ],
+             'uploadDir' => '@webroot/uploads',
+             'uploadUrl' => '@web/uploads',
+             'imageAllowExtensions'=>['jpg','png','gif']
+         ],
         'admin' => [
             'class' => 'grozzzny\admin\AdminModule',
+             'as access' => [
+                 'class' => 'grozzzny\admin\behaviors\AccessControl',
+             ],
+             'nav_items' => [
+                 [
+                     'label' => 'Начальная',
+                     'url' => ['/admin/default']
+                 ],
+                 [
+                     'label' => 'Страницы',
+                     'url' => ['/admin/pages/default']
+                 ],
+                 [
+                     'label' => 'Текстовые блоки',
+                     'url' => ['/admin/text/default']
+                 ],
+                 [
+                     'label' => 'Преимущества',
+                     'url' => ['/admin/features/default']
+                 ],
+                 [
+                     'label' => 'Отзывы',
+                     'url' => ['/admin/testimonials/default']
+                 ],
+                 [
+                     'label' => 'Обратный звонок',
+                     'url' => ['/admin/feedback/default']
+                 ],
+                 [
+                     'label' => 'Ссылки соц. сетей',
+                     'url' => ['/admin/social_links/default']
+                 ],
+                 [
+                     'label' => 'Dashboard demo',
+                     'url' => 'https://www.bootstrapdash.com/demo/star-admin-free/jquery/src/demo_1/index.html',
+                 ]
+             ],
+             'modules' => [
+                 'text' => [
+                     'class' => 'grozzzny\admin\modules\text\TextModule',
+                 ],
+                 'features' => [
+                     'class' => 'grozzzny\admin\modules\features\FeaturesModule',
+                 ],
+                 'testimonials' => [
+                     'class' => 'grozzzny\admin\modules\testimonials\TestimonialsModule',
+                 ],
+                 'feedback' => [
+                     'class' => 'grozzzny\admin\modules\feedback\FeedbackModule',
+                 ],
+                 'social_links' => [
+                     'class' => 'grozzzny\admin\modules\social_links\SocialLinksModule',
+                 ],
+                 'pages' => [
+                     'class' => 'grozzzny\admin\modules\pages\PagesModule',
+                 ],
+             ],
         ],
         ...
     ],
