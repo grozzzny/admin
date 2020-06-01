@@ -4,6 +4,8 @@ Admin module for Yii2
 This module allows to [yiiframework](https://www.yiiframework.com) 
 Dashboard Bootstrap 4 [Dashboard](https://www.bootstrapdash.com/demo/star-admin-free/jquery/src/demo_1/index.html#) 
 
+![alt text](https://raw.githubusercontent.com/grozzzny/admin/master/assets/images/2020-06-01_20-41-05.png)
+
 ### Installation guide
 
 ```bash
