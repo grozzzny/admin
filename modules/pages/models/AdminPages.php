@@ -22,6 +22,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property-read string $liveEditText
  * @property-read string $liveEditName
+ * @property-read string $liveEditH1
  *
  * @property-read AdminSeo $seo
  */
@@ -78,6 +79,15 @@ class AdminPages extends \yii\db\ActiveRecord
             'text' => Yii::t('app', 'Text'),
             'active' => Yii::t('app', 'Active'),
         ];
+    }
+
+    public function getLiveEditH1()
+    {
+        return LiveEditWidget::widget([
+            'text' => $this->seo->get('h1', $this->name),
+            'linkCreate' => ['/admin/pages/default/create', 'slug' => $this->slug],
+            'linkUpdate' => ['/admin/pages/default/update', 'slug' => $this->slug]
+        ]);
     }
 
     public function getLiveEditText()
