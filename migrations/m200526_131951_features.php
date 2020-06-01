@@ -61,6 +61,9 @@ class m200526_131951_features extends Migration
     public function down()
     {
         $this->dropTable('admin_features');
+        $this->dropTable('admin_testimonials');
+        $this->dropTable('admin_feedback');
+        $this->dropTable('admin_social_links');
 
         echo "m200526_131951_features cannot be reverted.\n";
 
