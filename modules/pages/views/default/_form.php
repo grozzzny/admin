@@ -46,7 +46,23 @@ use yii\redactor\widgets\Redactor;
         ]
     ])?>
 
-    <?= $form->field($model, 'active')->checkbox() ?>
+    <?= $form->field($model, 'active')->checkbox([
+        'labelOptions' => ['class' => 'custom-control-label'],
+        'options' => ['class' => 'custom-control-input'],
+        'template' => "<div class=\"custom-control custom-switch\">{input} {label}</div><div>{error}</div>",
+    ]) ?>
+
+    <hr>
+
+    <?= $form->field($model->seo, 'h1') ?>
+
+    <?= $form->field($model->seo, 'title') ?>
+
+    <?= $form->field($model->seo, 'keywords') ?>
+
+    <?= $form->field($model->seo, 'description')->textarea(['rows' => 4]) ?>
+
+    <?= $form->field($model->seo, 'image')->widget(ImageInputWidget::className()) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>

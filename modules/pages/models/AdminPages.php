@@ -2,6 +2,8 @@
 
 namespace grozzzny\admin\modules\pages\models;
 
+use grozzzny\admin\components\seo\AdminSeo;
+use grozzzny\admin\components\seo\AdminSeoBehavior;
 use grozzzny\admin\helpers\Image;
 use grozzzny\admin\widgets\file_input\components\FileBehavior;
 use grozzzny\admin\widgets\live_edit\LiveEditWidget;
@@ -20,6 +22,8 @@ use yii\helpers\ArrayHelper;
  *
  * @property-read string $liveEditText
  * @property-read string $liveEditName
+ *
+ * @property-read AdminSeo $seo
  */
 class AdminPages extends \yii\db\ActiveRecord
 {
@@ -38,6 +42,10 @@ class AdminPages extends \yii\db\ActiveRecord
                 'class' => FileBehavior::className(),
                 'fileAttribute' => 'image',
                 'uploadPath' => '/uploads/pages',
+            ],
+            'seo' => [
+                'class' => AdminSeoBehavior::className(),
+                'key' => 'pages',
             ],
         ]);
     }
@@ -99,6 +107,13 @@ class AdminPages extends \yii\db\ActiveRecord
         $image = Image::thumb($path, $width, $height);
 
         return empty($image) ? Image::thumb(Yii::$app->params['noimage'], $width, $height) : $image;
+    }
+
+    public static function get($slug)
+    {
+        $model = static::findOne(['slug' => $slug]);
+
+        return empty($model) ? Yii::createObject(['class' => static::className(), 'slug' => $slug]) : $model;
     }
 
 }

@@ -45,12 +45,6 @@ select {
 }
 
 .form-group {
-  label {
-    font-size: $default-font-size;
-    line-height: 1;
-    vertical-align: top;
-  }
-
   &.has-danger {
     .form-control {
       border-color: theme-color(danger);

@@ -56,7 +56,7 @@ class DefaultController extends Controller
                 $this->trigger(static::EVENT_SUBMIT, $event);
                 return true;
             } else {
-                throw new Exception(Yii::t('app', 'Error save. '. json_encode($model->errors, JSON_UNESCAPED_UNICODE)));
+                throw new Exception(Yii::t('app', 'Error save: {0}', json_encode($model->errors, JSON_UNESCAPED_UNICODE)));
             }
         }
     }
