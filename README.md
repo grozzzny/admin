@@ -30,8 +30,6 @@ Add following lines to your main configuration file:
 ```php
 $config = [
     ...
-    'bootstrap' => ['admin'],
-    ...
     'controllerMap' => [
          'feedback' => [
              'class' => 'grozzzny\admin\modules\feedback\widgets\form\controllers\DefaultController',

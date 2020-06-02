@@ -22,5 +22,8 @@
         "psr-4": {
             "grozzzny\\admin\\": ""
         }
+    },
+    "extra": {
+        "bootstrap": "grozzzny\\admin\\Bootstrap"
     }
 }

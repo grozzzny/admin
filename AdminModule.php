@@ -26,6 +26,12 @@ class AdminModule extends Module implements BootstrapInterface
         ]
     ];
 
+    /**
+     * @var array the class map. How the container should load specific classes
+     * @see Bootstrap::buildClassMap() for more details
+     */
+    public $classMap = [];
+
     public $controllerNamespace = 'grozzzny\admin\controllers';
 
     public $layout = 'main';
