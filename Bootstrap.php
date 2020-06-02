@@ -20,6 +20,7 @@ use Yii;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
+use yii\base\Module;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
