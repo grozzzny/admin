@@ -3,10 +3,14 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use grozzzny\admin\AdminModule;
 use grozzzny\admin\assets\AdminAsset;
 use yii\helpers\Html;
 
 $asset = AdminAsset::register($this);
+
+Yii::$app->view->params[AdminModule::HIDE_TOOLBAR_PARAM] = true;
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

@@ -8,8 +8,16 @@ use Yii;
 use yii\base\Module;
 use yii\web\View;
 
+/**
+ * Class AdminModule
+ * @package grozzzny\admin
+ *
+ * @property-read array $navItems
+ */
 class AdminModule extends Module
 {
+    const HIDE_TOOLBAR_PARAM = 'hide_toolbar_param';
+
     const LIVE_EDIT_KEY = 'live_edit';
 
     public $live_edit_role = '@';
@@ -58,9 +66,16 @@ class AdminModule extends Module
         return Yii::$app->getModule('admin');
     }
 
+    public function getNavItems()
+    {
+        $nav_items = $this->nav_items;
+
+        return $nav_items instanceof \Closure ? $nav_items() : $nav_items;
+    }
+
     protected function renderToolbar()
     {
-        if(!static::can($this->render_toolbar_role) || strpos(Yii::$app->request->pathInfo, 'admin') !== false) return false;
+        if(!static::can($this->render_toolbar_role) || isset(Yii::$app->view->params[static::HIDE_TOOLBAR_PARAM])) return false;
 
         echo Yii::$app->view->render($this->view_path_toolbar);
     }

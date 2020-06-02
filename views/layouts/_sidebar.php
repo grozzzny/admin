@@ -19,6 +19,6 @@ $items = [
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <?= Nav::widget([
-        'items' => ArrayHelper::merge($items, $module->nav_items)
+        'items' => ArrayHelper::merge($items, $module->navItems)
     ]) ?>
 </nav>
