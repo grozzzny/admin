@@ -5,11 +5,10 @@ namespace grozzzny\admin;
 
 
 use Yii;
-use yii\base\BootstrapInterface;
 use yii\base\Module;
 use yii\web\View;
 
-class AdminModule extends Module implements BootstrapInterface
+class AdminModule extends Module
 {
     const LIVE_EDIT_KEY = 'live_edit';
 
@@ -57,11 +56,6 @@ class AdminModule extends Module implements BootstrapInterface
     public static function instance()
     {
         return Yii::$app->getModule('admin');
-    }
-
-    public function bootstrap($app)
-    {
-        $app->view->on(View::EVENT_END_BODY, [$this, 'renderToolbar']);
     }
 
     protected function renderToolbar()

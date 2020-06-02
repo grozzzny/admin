@@ -6,6 +6,7 @@ namespace grozzzny\admin\modules\text;
 
 use grozzzny\admin\modules\text\models\AdminText;
 use grozzzny\admin\widgets\live_edit\LiveEditWidget;
+use Yii;
 
 /**
  * Class LiveEditText
@@ -26,7 +27,10 @@ class LiveEditText extends LiveEditWidget
 
     protected function getTextModel()
     {
-        $model = AdminText::findOne(['slug' => $this->slug]);
+        /** @var AdminText $instance */
+        $instance = Yii::$container->get(AdminText::class);
+
+        $model = $instance::findOne(['slug' => $this->slug]);
 
         return $model->text;
     }

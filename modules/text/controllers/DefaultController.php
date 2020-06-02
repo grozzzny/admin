@@ -35,7 +35,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminTextSearch();
+        /** @var AdminTextSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminTextSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +54,8 @@ class DefaultController extends Controller
      */
     public function actionCreate($slug = null)
     {
-        $model = new AdminText();
+        /** @var AdminText $model */
+        $model = Yii::$container->get(AdminText::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -109,7 +112,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminText::findOne($id)) !== null) {
+        /** @var AdminText $instance */
+        $instance = Yii::$container->get(AdminText::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 
@@ -118,7 +124,10 @@ class DefaultController extends Controller
 
     protected function findModelBySlug($slug)
     {
-        if (($model = AdminText::findOne(['slug' => $slug])) !== null) {
+        /** @var AdminText $instance */
+        $instance = Yii::$container->get(AdminText::class);
+
+        if (($model = $instance::findOne(['slug' => $slug])) !== null) {
             return $model;
         }
 

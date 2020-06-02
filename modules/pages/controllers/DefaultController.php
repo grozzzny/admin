@@ -36,7 +36,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminPagesSearch();
+        /** @var AdminPagesSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminPagesSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -53,7 +55,8 @@ class DefaultController extends Controller
      */
     public function actionCreate($slug = null)
     {
-        $model = new AdminPages();
+        /** @var AdminPages $searchModel */
+        $model = Yii::$container->get(AdminPages::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -109,7 +112,9 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminPages::findOne($id)) !== null) {
+        $model = Yii::$container->get(AdminPages::class);
+
+        if (($model = $model::findOne($id)) !== null) {
             return $model;
         }
 
@@ -118,7 +123,9 @@ class DefaultController extends Controller
 
     protected function findModelBySlug($slug)
     {
-        if (($model = AdminPages::findOne(['slug' => $slug])) !== null) {
+        $model = Yii::$container->get(AdminPages::class);
+
+        if (($model = $model::findOne(['slug' => $slug])) !== null) {
             return $model;
         }
 

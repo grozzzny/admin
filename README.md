@@ -91,6 +91,10 @@ $config = [
                      'url' => 'https://www.bootstrapdash.com/demo/star-admin-free/jquery/src/demo_1/index.html',
                  ]
              ],
+             'classMap' => [
+                 //'AdminPages' => 'app\models\AdminPages',
+                 //'AdminSeo' => 'app\models\AdminSeo',
+             ],
              'modules' => [
                  'text' => [
                      'class' => 'grozzzny\admin\modules\text\TextModule',

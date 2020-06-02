@@ -64,13 +64,16 @@ class AdminSeoBehavior extends Behavior
 
     protected function useModel($key, $item_id)
     {
-        $model = AdminSeo::find()->where([
+        /** @var AdminSeo $instance */
+        $instance = Yii::$container->get(AdminSeo::class);
+
+        $model = $instance::find()->where([
             'key' => $key,
             'item_id' => $item_id
         ])->one();
 
         return empty($model) ? Yii::createObject([
-            'class' => AdminSeo::className(),
+            'class' => $instance::className(),
             'key' => $key,
             'item_id' => $item_id,
         ]) : $model;

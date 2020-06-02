@@ -35,7 +35,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminSocialLinksSearch();
+        /** @var AdminSocialLinksSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminSocialLinksSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +54,8 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new AdminSocialLinks();
+        /** @var AdminSocialLinks $model */
+        $model = Yii::$container->get(AdminSocialLinks::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,7 +109,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminSocialLinks::findOne($id)) !== null) {
+        /** @var AdminSocialLinks $instance */
+        $instance = Yii::$container->get(AdminSocialLinks::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 

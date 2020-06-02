@@ -21,6 +21,7 @@ use yii\base\BootstrapInterface;
 use yii\base\Exception;
 use yii\base\InvalidConfigException;
 use yii\base\Module;
+use yii\web\View;
 
 /**
  * Bootstrap class of the yii2-usuario extension. Configures container services, initializes translations,
@@ -36,8 +37,12 @@ class Bootstrap implements BootstrapInterface
     public function bootstrap($app)
     {
         if ($app->hasModule('admin') && $app->getModule('admin') instanceof Module) {
-            $map = $this->buildClassMap($app->getModule('admin')->classMap);
+            /** @var AdminModule $module */
+            $module = $app->getModule('admin');
+            $map = $this->buildClassMap($module->classMap);
             $this->initContainer($app, $map);
+
+            $app->view->on(View::EVENT_END_BODY, [$module, 'renderToolbar']);
         }
     }
 

@@ -35,7 +35,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminFeaturesSearch();
+        /** @var AdminFeaturesSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminFeaturesSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +54,8 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new AdminFeatures();
+        /** @var AdminFeatures $model */
+        $model = Yii::$container->get(AdminFeatures::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,7 +109,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminFeatures::findOne($id)) !== null) {
+        /** @var AdminFeatures $instance */
+        $instance = Yii::$container->get(AdminFeatures::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 

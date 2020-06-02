@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\testimonials\controllers;
 
+use grozzzny\admin\modules\social_links\models\AdminSocialLinks;
 use Yii;
 use grozzzny\admin\modules\testimonials\models\AdminTestimonials;
 use grozzzny\admin\modules\testimonials\models\AdminTestimonialsSearch;
@@ -35,7 +36,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminTestimonialsSearch();
+        /** @var AdminTestimonialsSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminTestimonialsSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +55,8 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new AdminTestimonials();
+        /** @var AdminTestimonials $model */
+        $model = Yii::$container->get(AdminTestimonials::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,7 +110,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminTestimonials::findOne($id)) !== null) {
+        /** @var AdminTestimonials $instance */
+        $instance = Yii::$container->get(AdminTestimonials::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 

@@ -35,7 +35,9 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminFeedbackSearch();
+        /** @var AdminFeedbackSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminFeedbackSearch::class);
+
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +54,8 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new AdminFeedback();
+        /** @var AdminFeedback $model */
+        $model = Yii::$container->get(AdminFeedback::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,7 +109,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminFeedback::findOne($id)) !== null) {
+        /** @var AdminFeedback $instance */
+        $instance = Yii::$container->get(AdminFeedback::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 
