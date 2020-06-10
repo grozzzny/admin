@@ -17,6 +17,8 @@ class FileBehavior extends Behavior
      */
     public $owner;
 
+    public $root = '@webroot';
+
     public $fileAttribute;
 
     public $uploadPath = '/uploads';
@@ -55,13 +57,13 @@ class FileBehavior extends Behavior
 
         $nameFile = self::generateFileName($file);
 
-        $path = $this->uploadPath . DIRECTORY_SEPARATOR . $nameFile;
+        $path = $this->uploadPath() . DIRECTORY_SEPARATOR . $nameFile;
 
-        FileHelper::createDirectory(Yii::getAlias('@webroot' . $this->uploadPath));
+        FileHelper::createDirectory($this->root() . $this->uploadPath());
 
         if($file->type == 'image/jpeg') self::orientation($file);
 
-        $file->saveAs(Yii::getAlias('@webroot' . $path));
+        $file->saveAs($this->root() . $path);
 
         $this->owner->{$this->fileAttribute} = Yii::getAlias('@web' . $path);
     }
@@ -106,8 +108,18 @@ class FileBehavior extends Behavior
 
         $value = 'object' == gettype($attributeValue) ? $oldAttributeValue : $attributeValue;
 
-        if(empty($value) || !file_exists(Yii::getAlias('@webroot' . $value))) return;
+        if(empty($value) || !file_exists($this->root() . $value)) return;
 
-        FileHelper::unlink(Yii::getAlias('@webroot' . $value));
+        FileHelper::unlink($this->root() . $value);
+    }
+
+    protected function root()
+    {
+        return Yii::getAlias($this->root);
+    }
+
+    protected function uploadPath()
+    {
+        return $this->uploadPath;
     }
 }
