@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="card">
             <div class="card-body">
                 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-index">
-
+                <div class="table-responsive">
                 <?= $generator->enablePjax ? "    <?php Pjax::begin(); ?>\n" : '' ?>
                 <?php if(!empty($generator->searchModelClass)): ?>
                 <?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -110,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php endif; ?>
 
                 <?= $generator->enablePjax ? "    <?php Pjax::end(); ?>\n" : '' ?>
-
+                </div>
                 </div>
             </div>
         </div>
