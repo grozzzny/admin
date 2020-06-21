@@ -31,8 +31,9 @@ class AdminImages extends \yii\db\ActiveRecord
     {
         return [
             [['item_id'], 'integer'],
-            [['key', 'author', 'description', 'file'], 'string', 'max' => 255],
-            [['key', 'item_id'], 'unique', 'targetAttribute' => ['key', 'item_id']],
+            [['key', 'author', 'description'], 'string', 'max' => 255],
+//            [['key', 'item_id'], 'unique', 'targetAttribute' => ['key', 'item_id']],
+            ['file', 'image'],
         ];
     }
 
@@ -49,5 +50,18 @@ class AdminImages extends \yii\db\ActiveRecord
             'description' => Yii::t('app', 'Description'),
             'file' => Yii::t('app', 'File'),
         ];
+    }
+
+    /**
+     * Formats all model errors into a single string
+     * @return string
+     */
+    public function formatErrors()
+    {
+        $result = '';
+        foreach($this->getErrors() as $attribute => $errors) {
+            $result .= implode(" ", $errors)." ";
+        }
+        return $result;
     }
 }

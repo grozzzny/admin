@@ -22,7 +22,7 @@ class m200621_160445_images extends Migration
             'description' => $this->string(),
             'file' => $this->string(),
         ], $this->engine);
-        $this->createIndex('index_key_item_id', 'admin_images', ['key', 'item_id'], true);
+        $this->createIndex('index_key_item_id', 'admin_images', ['key', 'item_id']);
     }
 
     /**
