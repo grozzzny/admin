@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin;
 
+use grozzzny\admin\components\images\AdminImages;
 use grozzzny\admin\helpers\ClassMapHelper;
 use grozzzny\admin\components\seo\AdminSeo;
 use grozzzny\admin\modules\features\models\AdminFeatures;
@@ -58,6 +59,7 @@ class Bootstrap implements BootstrapInterface
 
         try {
             $cn->set(AdminSeo::class);
+            $cn->set(AdminImages::class);
 
             // features
             $cn->set(AdminFeatures::class);
@@ -111,6 +113,7 @@ class Bootstrap implements BootstrapInterface
 
         $defaults = [
             'AdminSeo' => 'grozzzny\admin\components\seo\AdminSeo',
+            'AdminImages' => 'grozzzny\admin\components\images\AdminImages',
 
             'AdminFeatures' => 'grozzzny\admin\modules\features\models\AdminFeatures',
             'AdminFeaturesSearch' => 'grozzzny\admin\modules\features\models\AdminFeaturesSearch',
@@ -134,6 +137,9 @@ class Bootstrap implements BootstrapInterface
         $routes = [
             'grozzzny\admin\components\seo' => [
                 'AdminSeo',
+            ],
+            'grozzzny\admin\components\images' => [
+                'AdminImages',
             ],
             'grozzzny\admin\modules\features\models' => [
                 'AdminFeatures',
