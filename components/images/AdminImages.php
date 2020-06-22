@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\components\images;
 
+use grozzzny\admin\helpers\Image;
 use Yii;
 
 /**
@@ -63,5 +64,16 @@ class AdminImages extends \yii\db\ActiveRecord
             $result .= implode(" ", $errors)." ";
         }
         return $result;
+    }
+
+    public function getImage($width = null, $height = null)
+    {
+        if(!isset(Yii::$app->params['noimage'])) return Image::thumb($this->file, $width, $height);
+
+        $path = empty($this->file) ? Yii::$app->params['noimage'] : $this->file;
+
+        $image = Image::thumb($path, $width, $height);
+
+        return empty($image) ? Image::thumb(Yii::$app->params['noimage'], $width, $height) : $image;
     }
 }
