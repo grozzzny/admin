@@ -1,16 +1,17 @@
 $(function(){
-    var photosBody = $('#photo-table > tbody');
+    var photosBody = $('#admin-images-container');
     var uploadButton = $('#photo-upload');
     var uploadingText = $('#uploading-text');
     var uploadingTextInterval;
 
-    if(location.hash){
-        $('img'+location.hash).closest('tr').addClass('info');
-    }
+    var getTemplate = function(selector){
+        return $(selector).html();
+    };
 
     uploadButton.on('click', function(){
         $('#photo-file').trigger('click');
     });
+
     $('#photo-file').on('change', function(){
         var $this = $(this);
 
@@ -35,22 +36,23 @@ $(function(){
                     type: 'post',
                     success: function(response){
                         if(response.result === 'success'){
+                            var photoTemplate = getTemplate('#photo-template');
+
                             var html = $(photoTemplate
                                 .replace(/\{\{photo_id\}\}/g, response.photo.id)
                                 .replace(/\{\{photo_thumb\}\}/g, response.photo.thumb)
                                 .replace(/\{\{photo_image\}\}/g, response.photo.image)
-                                .replace(/\{\{photo_description\}\}/g, ''))
+                                .replace(/\{\{photo_description\}\}/g, '')
+                                .replace(/\{\{photo_author\}\}/g, ''))
                                 .hide();
 
-                            var prevId = $('tr[data-id='+( response.photo.id - 1 )+']', photosBody);
+                            var prevId = $('[data-photo-id='+( response.photo.id - 1 )+']', photosBody);
                             if(prevId.get(0)){
                                 prevId.before(html);
                             } else {
                                 photosBody.prepend(html);
                             }
                             html.fadeIn();
-
-                            checkEmpty();
                         } else {
                             alert(response.error);
                         }
@@ -75,15 +77,14 @@ $(function(){
             saveBtn.removeClass('disabled').on('click', function(e){
                 e.preventDefault();
                 var $this = $(this).unbind('click').addClass('disabled');
-                var tr = $this.closest('tr');
                 var text = $this.siblings('.photo-description').val();
+                var author = $this.siblings('.photo-author').val();
                 $.post(
                     $this.attr('href'),
-                    {description: text},
+                    {description: text, author: author},
                     function(response){
                         if(response.result === 'success'){
                             notify.success(response.message);
-                            tr.find('.plugin-box').attr('title', text);
                         }
                         else{
                             alert(response.error);
@@ -103,7 +104,6 @@ $(function(){
 
     photosBody.on('change', '.change-image-input', function(){
         var $this = $(this);
-        var tr = $this.closest('tr');
         var fileData = $this.prop('files')[0];
         var formData = new FormData();
         var changeButton = $this.siblings('.change-image-button').addClass('disabled');
@@ -119,7 +119,12 @@ $(function(){
             success: function(response){
                 changeButton.removeClass('disabled');
                 if(response.result === 'success'){
-                    tr.find('.plugin-box').attr('href', response.photo.image).children('img').attr('src', response.photo.thumb);
+                    $this.parents('[data-photo-id]')
+                        .find('.admin-images-photo-preview a')
+                        .attr('href', response.photo.image)
+                        .children('img')
+                        .attr('src', response.photo.thumb);
+
                     notify.success(response.message);
                 }else{
                     alert(response.error);
@@ -135,10 +140,7 @@ $(function(){
                 $this.removeClass('disabled');
                 if(response.result === 'success'){
                     notify.success(response.message);
-                    $this.closest('tr').fadeOut(function(){
-                        $(this).remove();
-                        checkEmpty();
-                    });
+                    $this.parents('[data-photo-id]').remove();
                 } else {
                     alert(response.error);
                 }
@@ -146,20 +148,6 @@ $(function(){
         }
         return false;
     });
-
-    function checkEmpty(){
-        var table = photosBody.parent();
-        if(photosBody.find('tr').length) {
-            if(!table.is(':visible')) {
-                table.show();
-                $('.empty').hide();
-            }
-        }
-        else{
-            table.hide();
-            $('.empty').show();
-        }
-    }
 
     var dots = 0;
     function dotsAnimation() {

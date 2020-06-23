@@ -76,4 +76,11 @@ class AdminImages extends \yii\db\ActiveRecord
 
         return empty($image) ? Image::thumb(Yii::$app->params['noimage'], $width, $height) : $image;
     }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        @unlink(Yii::getAlias('@webroot').$this->file);
+    }
 }

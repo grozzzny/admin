@@ -1,6 +1,52 @@
 #photo-upload {
     margin: 20px 0;
 }
-.photo-description{height: 65px !important; margin-bottom: 5px;}
 
 #uploading-text{display: none;}
+
+.hidden-block{
+    display: none;
+}
+
+.admin-images-photos{
+    margin-right: -20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.admin-images-photo{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width: 300px;
+}
+
+.admin-images-photo-preview{
+    width: 300px;
+    height: 250px;
+    border: 1px solid lightgray;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.admin-images-photo-preview a{
+    width: 300px;
+    height: 250px;
+    display: block;
+}
+
+.admin-images-photo-preview a img{
+    width: 300px;
+    height: 250px;
+    object-fit: contain;
+    box-sizing: border-box;
+}
+
+.admin-images-photo-body{
+
+}
+
+.admin-images-photo-footer{
+
+}

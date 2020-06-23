@@ -5,6 +5,7 @@ namespace grozzzny\admin\components\images\widget\controllers;
 
 
 use grozzzny\admin\components\images\AdminImages;
+use grozzzny\admin\components\images\widget\ImagesWidget;
 use grozzzny\admin\helpers\Image;
 use Yii;
 use yii\helpers\Url;
@@ -15,6 +16,7 @@ use yii\web\UploadedFile;
 class AdminImagesController extends Controller
 {
     public $error = null;
+    public $dir = 'photos';
 
     public function behaviors()
     {
@@ -37,22 +39,20 @@ class AdminImagesController extends Controller
 
         $model->key = $key;
         $model->item_id = $item_id;
-
         $model->file = UploadedFile::getInstance($model, 'file');
 
-//        if($model->file && $model->validate(['file'])) {
-            $model->file = Image::upload($model->file, 'photos', 1900);
-
+        if($model->file && $model->validate(['file'])) {
+            $model->file = Image::upload($model->file, $this->dir, ImagesWidget::PHOTO_MAX_WIDTH);
             if ($model->file) {
-
                 if ($model->save()) {
                     $success = [
                         'message' => Yii::t('app', 'Photo uploaded'),
                         'photo' => [
                             'id' => $model->primaryKey,
                             'image' => $model->file,
-                            'thumb' => Image::thumb($model->file, 120, 90),
-                            'description' => ''
+                            'thumb' => Image::thumb($model->file, ImagesWidget::PHOTO_THUMB_WIDTH, ImagesWidget::PHOTO_THUMB_HEIGHT),
+                            'description' => '',
+                            'photo_author' => '',
                         ]
                     ];
                 } else {
@@ -62,16 +62,89 @@ class AdminImagesController extends Controller
             } else {
                 $this->error = Yii::t('app', 'File upload error. Check uploads folder for write permissions');
             }
-//        } else{
-//            $this->error = Yii::t('app', 'File is incorrect');
-//        }
+        } else {
+            $this->error = Yii::t('app', 'File is incorrect');
+        }
 
         return $this->formatResponse($success);
     }
 
-    public function removeImage()
+    public function actionData($id)
     {
+        /** @var AdminImages $model */
+        $model = Yii::$container->get(AdminImages::class);
 
+        if(($model = $model::findOne($id))) {
+            if($model->load(Yii::$app->request->post(), '')) {
+                if(!$model->update()) {
+                    $this->error = Yii::t('app', 'Update error. {0}', $model->formatErrors());
+                }
+            } else {
+                $this->error = Yii::t('app', 'Bad response');
+            }
+        } else{
+            $this->error = Yii::t('app', 'Not found');
+        }
+
+        return $this->formatResponse(Yii::t('app', 'Photo description saved'));
+    }
+
+    public function actionChange($id)
+    {
+        $success = null;
+
+        /** @var AdminImages $model */
+        $model = Yii::$container->get(AdminImages::class);
+
+        if(($photo = $model::findOne($id))) {
+            $oldImage = $photo->file;
+
+            $photo->file = UploadedFile::getInstance($photo, 'file');
+
+            if($photo->file && $photo->validate(['file'])){
+                $photo->file = Image::upload($photo->file, $this->dir, ImagesWidget::PHOTO_MAX_WIDTH);
+                if($photo->file){
+                    if($photo->save()){
+                        @unlink(Yii::getAlias('@webroot').$oldImage);
+
+                        $success = [
+                            'message' => Yii::t('app', 'Photo uploaded'),
+                            'photo' => [
+                                'image' => $photo->file,
+                                'thumb' => Image::thumb($photo->file, ImagesWidget::PHOTO_THUMB_WIDTH, ImagesWidget::PHOTO_THUMB_HEIGHT)
+                            ]
+                        ];
+                    } else{
+                        @unlink(Yii::getAlias('@webroot').$photo->file);
+
+                        $this->error = Yii::t('app', 'Update error. {0}', $photo->formatErrors());
+                    }
+                } else{
+                    $this->error = Yii::t('app', 'File upload error. Check uploads folder for write permissions');
+                }
+            } else{
+                $this->error = Yii::t('app', 'File is incorrect');
+            }
+
+        }
+        else{
+            $this->error =  Yii::t('app', 'Not found');
+        }
+
+        return $this->formatResponse($success);
+    }
+
+    public function actionDelete($id)
+    {
+        /** @var AdminImages $model */
+        $model = Yii::$container->get(AdminImages::class);
+
+        if(($model = $model::findOne($id))){
+            $model->delete();
+        } else {
+            $this->error = Yii::t('app', 'Not found');
+        }
+        return $this->formatResponse(Yii::t('app', 'Photo deleted'));
     }
 
     /**

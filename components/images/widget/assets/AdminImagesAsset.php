@@ -17,6 +17,8 @@ class AdminImagesAsset extends \yii\web\AssetBundle
     ];
 
     public $depends = [
-    'yii\web\JqueryAsset',
-];
+        'yii\web\JqueryAsset',
+        'grozzzny\depends\glyphicon\GlyphiconAsset',
+        'grozzzny\depends\notify\NotifyAsset',
+    ];
 }
