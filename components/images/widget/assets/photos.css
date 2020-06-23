@@ -5,7 +5,7 @@
 #uploading-text{display: none;}
 
 .hidden-block{
-    display: none;
+    display: none !important;
 }
 
 .admin-images-photos{
