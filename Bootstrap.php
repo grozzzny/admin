@@ -5,6 +5,8 @@ namespace grozzzny\admin;
 use grozzzny\admin\components\images\AdminImages;
 use grozzzny\admin\helpers\ClassMapHelper;
 use grozzzny\admin\components\seo\AdminSeo;
+use grozzzny\admin\modules\article\models\AdminArticles;
+use grozzzny\admin\modules\article\models\AdminArticlesSearch;
 use grozzzny\admin\modules\features\models\AdminFeatures;
 use grozzzny\admin\modules\features\models\AdminFeaturesSearch;
 use grozzzny\admin\modules\feedback\models\AdminFeedback;
@@ -85,6 +87,10 @@ class Bootstrap implements BootstrapInterface
             $cn->set(AdminText::class);
             $cn->set(AdminTextSearch::class);
 
+            // article
+            $cn->set(AdminArticles::class);
+            $cn->set(AdminArticlesSearch::class);
+
             // class map models + query classes
             $modelClassMap = [];
             foreach ($map as $class => $definition) {
@@ -132,6 +138,9 @@ class Bootstrap implements BootstrapInterface
 
             'AdminText' => 'grozzzny\admin\modules\text\models\AdminText',
             'AdminTextSearch' => 'grozzzny\admin\modules\text\models\AdminTextSearch',
+
+            'AdminArticles' => 'grozzzny\admin\modules\article\models\AdminArticles',
+            'AdminArticlesSearch' => 'grozzzny\admin\modules\article\models\AdminArticlesSearch',
         ];
 
         $routes = [
@@ -164,6 +173,10 @@ class Bootstrap implements BootstrapInterface
             'grozzzny\admin\modules\text\models' => [
                 'AdminText',
                 'AdminTextSearch',
+            ],
+            'grozzzny\admin\modules\article\models' => [
+                'AdminArticles',
+                'AdminArticlesSearch',
             ],
         ];
 
