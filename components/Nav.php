@@ -56,7 +56,7 @@ class Nav extends \yii\bootstrap4\Nav
             if (isset($item['visible']) && !$item['visible']) {
                 continue;
             }
-            $items[] = $this->renderItem($item, $i);
+            $items[] = $this->renderItemOne($item, $i);
         }
 
         return Html::tag('ul', implode("\n", $items), $this->options);
@@ -69,7 +69,7 @@ class Nav extends \yii\bootstrap4\Nav
      * @throws InvalidConfigException
      * @throws \Exception
      */
-    public function renderItem($item, $i)
+    public function renderItemOne($item, $i)
     {
         if (is_string($item)) {
             return $item;
