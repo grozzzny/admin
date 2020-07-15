@@ -25,7 +25,7 @@ class FileBehavior extends Behavior
 
     public function events()
     {
-        if(empty(Yii::$app->request) || !Yii::$app->request->isPost) return [];
+        if(empty(Yii::$app->request) || Yii::$app->request->isConsoleRequest || !Yii::$app->request->isPost) return [];
 
         return [
             ActiveRecord::EVENT_BEFORE_VALIDATE => 'beforeValidate',
