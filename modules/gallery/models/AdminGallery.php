@@ -49,7 +49,6 @@ class AdminGallery extends \yii\db\ActiveRecord
         return [
             [['active'], 'integer'],
             [['slug', 'name'], 'string', 'max' => 255],
-            [['slug', 'name'], 'string', 'max' => 255],
             [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
             [['name'], 'required'],
         ];

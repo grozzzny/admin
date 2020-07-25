@@ -2,7 +2,10 @@
 
 namespace grozzzny\admin\modules\files\models;
 
+use grozzzny\admin\widgets\file_input\components\FileBehavior;
 use Yii;
+use yii\behaviors\SluggableBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "admin_files".
@@ -23,6 +26,21 @@ class AdminFiles extends \yii\db\ActiveRecord
         return 'admin_files';
     }
 
+    public function behaviors()
+    {
+        return ArrayHelper::merge(parent::behaviors(), [
+            'slug' => [
+                'class' => SluggableBehavior::className(),
+                'attribute' => 'name'
+            ],
+            'file' => [
+                'class' => FileBehavior::className(),
+                'fileAttribute' => 'file',
+                'uploadPath' => '/uploads/file',
+            ],
+        ]);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -30,7 +48,9 @@ class AdminFiles extends \yii\db\ActiveRecord
     {
         return [
             [['active'], 'integer'],
-            [['slug', 'name', 'file'], 'string', 'max' => 255],
+            [['slug', 'name'], 'string', 'max' => 255],
+            [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
+            [['file'], 'file'],
         ];
     }
 

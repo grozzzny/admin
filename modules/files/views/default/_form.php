@@ -1,5 +1,6 @@
 <?php
 
+use grozzzny\admin\widgets\file_input\FileInputWidget;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
@@ -16,9 +17,13 @@ use yii\bootstrap4\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'file')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'file')->widget(FileInputWidget::class, [])?>
 
-    <?= $form->field($model, 'active')->textInput() ?>
+    <?= $form->field($model, 'active')->checkbox([
+        'labelOptions' => ['class' => 'custom-control-label'],
+        'options' => ['class' => 'custom-control-input'],
+        'template' => "<div class=\"custom-control custom-switch\">{input} {label}</div><div>{error}</div>",
+    ]) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
