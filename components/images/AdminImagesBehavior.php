@@ -19,6 +19,7 @@ class AdminImagesBehavior extends Behavior
      * @var ActiveRecord
      */
     public $owner;
+    public $key = 'events';
 
     public function events()
     {
@@ -39,6 +40,6 @@ class AdminImagesBehavior extends Behavior
         /** @var AdminImages $model */
         $model = Yii::$container->get(AdminImages::class);
 
-        return $this->owner->hasMany($model::className(), ['item_id' => 'id'])->where(['key' => 'events']);
+        return $this->owner->hasMany($model::className(), ['item_id' => 'id'])->where(['key' => $this->key]);
     }
 }

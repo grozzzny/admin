@@ -44,8 +44,6 @@ $linkParams = [
     <?php endforeach; ?>
 </div>
 
-<p class="empty" style="display: <?= count($images) ? 'none' : 'block' ?>;"><?= Yii::t('app', 'No photos uploaded yet') ?>.</p>
-
 <?= Html::beginForm(Url::to($context->url_upload + $linkParams), 'post', ['enctype' => 'multipart/form-data']) ?>
 <?= Html::fileInput('', null, [
     'id' => 'photo-file',
