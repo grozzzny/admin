@@ -32,7 +32,9 @@
 
   .card-body {
     padding: $card-padding-y $card-padding-x;
-
+    @media (max-width: 992px) {
+      padding: 0.5rem;
+    }
     &.no-gutter {
       padding: 0;
     }

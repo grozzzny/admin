@@ -11,7 +11,7 @@ use yii\web\View;
 $asset = AdminAsset::register($this);
 ?>
 
-<nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+<nav class="navbar navbar-admin default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         <a class="navbar-brand brand-logo" href="<?= Url::to(['/'])?>">
             <img src="<?=$asset->baseUrl?>/images/logo.svg" alt="logo" /> </a>

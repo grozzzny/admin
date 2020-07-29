@@ -1,8 +1,8 @@
 <?php
 
 use grozzzny\admin\AdminModule;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 use yii\web\View;
 
 /**
@@ -14,7 +14,7 @@ $hasLiveEdit = $module->hasLiveEdit();
 
 $css = <<<CSS
     body{
-        padding-bottom: 60px;
+        padding-bottom: 51px;
     }
 CSS;
 
@@ -26,8 +26,8 @@ NavBar::begin([
     'brandLabel' => Yii::t('app', 'Admin dashboard'),
     'brandUrl' => ['/admin'],
     'options' => [
-        'class' => ['navbar', 'navbar-expand-lg', 'navbar-light', 'bg-light', 'fixed-bottom', 'navbar-admin-panel']
-    ]
+        'class' => ['navbar', 'navbar-default', 'navbar-fixed-bottom', 'navbar-inverse', 'navbar-admin-panel']
+    ]//navbar navbar-default navbar-fixed-top
 ]);
 echo Nav::widget([
      'items' => [
@@ -46,7 +46,7 @@ echo Nav::widget([
              'url' => ['/admin/default/logout']
          ],
      ],
-     'options' => ['class' => 'navbar-nav'],
+     'options' => ['class' => ['navbar-nav', 'nav']],
 ]);
 NavBar::end();
 ?>

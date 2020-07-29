@@ -12094,6 +12094,11 @@ pre {
 .card .card-body {
   padding: 1.88rem 1.81rem;
 }
+@media (max-width: 992px) {
+  .card .card-body {
+    padding: 0.5rem;
+  }
+}
 .card .card-body.no-gutter {
   padding: 0;
 }

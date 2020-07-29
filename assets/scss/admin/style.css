@@ -671,6 +671,10 @@
   min-height: 100vh;
 }
 
+.navbar-admin {
+  border: none !important;
+}
+
 .main-panel {
   transition: width 0.25s ease, margin 0.25s ease;
   width: calc(100% - 270px);
@@ -690,6 +694,11 @@
   padding: 1.5rem 1.7rem;
   width: 100%;
   flex-grow: 1;
+}
+@media (max-width: 992px) {
+  .content-wrapper {
+    padding: 0.3rem;
+  }
 }
 
 .container-scroller {
