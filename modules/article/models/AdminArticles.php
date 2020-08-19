@@ -8,6 +8,7 @@ use grozzzny\admin\widgets\file_input\components\FileBehavior;
 use grozzzny\admin\widgets\live_edit\LiveEditWidget;
 use Yii;
 use yii\behaviors\SluggableBehavior;
+use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -49,6 +50,7 @@ class AdminArticles extends \yii\db\ActiveRecord
                 'class' => SluggableBehavior::className(),
                 'attribute' => 'name'
             ],
+            TimestampBehavior::className(),
         ]);
     }
 
@@ -60,7 +62,7 @@ class AdminArticles extends \yii\db\ActiveRecord
         return [
             [['image'], 'image'],
             [['text', 'short'], 'string'],
-            [['active'], 'integer'],
+            [['active', 'updated_at', 'created_at'], 'integer'],
             [['slug', 'name'], 'string', 'max' => 255],
             [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
             [['name'], 'required'],
