@@ -16,6 +16,7 @@
         "php": ">=5.6.0",
         "yiisoft/yii2-bootstrap4": "^2.0",
         "grozzzny/depends": "dev-master",
+        "black-lamp/yii2-text-editor": "1.0.0",
         "yiidoc/yii2-redactor": "*"
     },
     "autoload": {
