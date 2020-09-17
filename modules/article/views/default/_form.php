@@ -1,9 +1,10 @@
 <?php
 
+use dosamigos\tinymce\TinyMce;
 use grozzzny\admin\widgets\file_input\ImageInputWidget;
 use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
-use yii\redactor\widgets\Redactor;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model grozzzny\admin\modules\article\models\AdminArticles */
@@ -22,31 +23,23 @@ use yii\redactor\widgets\Redactor;
 
     <?= $form->field($model, 'short')->textarea(['rows' => 4]) ?>
 
-    <?= $form->field($model, 'text')->widget(Redactor::className(), [
+    <?= $form->field($model, 'description')->widget(TinyMce::className(), [
+        'options' => ['rows' => 50],
+        'language' => 'ru',
         'clientOptions' => [
-            'minHeight' => '400px',
-            'imageManagerJson' => ['/redactor/upload/image-json'],
-            'imageUpload' => ['/redactor/upload/image'],
-            'fileUpload' => ['/redactor/upload/file'],
-            'lang' => 'ru',
             'plugins' => [
-                'clips',
-                'counter',
-                'definedlinks',
-                'filemanager',
-                'fontcolor',
-                'fontfamily',
-                'fontsize',
-                'fullscreen',
-                'imagemanager',
-                'limiter',
-                'table',
-                'textdirection',
-                'textexpander',
-                'video',
-            ]
+                "advlist autolink lists link charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste",
+                "image code"
+            ],
+            'toolbar' => "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            'image_title' => true,
+            'automatic_uploads' => true,
+            'file_picker_types' => 'image',
+            'images_upload_url' => Url::to(['/admin/upload/index']),
         ]
-    ])?>
+    ]);?>
 
     <?= $form->field($model, 'active')->checkbox([
         'labelOptions' => ['class' => 'custom-control-label'],
