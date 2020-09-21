@@ -23,7 +23,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'short')->textarea(['rows' => 4]) ?>
 
-    <?= $form->field($model, 'description')->widget(TinyMce::className(), [
+    <?= $form->field($model, 'text')->widget(TinyMce::className(), [
         'options' => ['rows' => 50],
         'language' => 'ru',
         'clientOptions' => [
