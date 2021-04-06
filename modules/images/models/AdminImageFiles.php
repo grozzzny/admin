@@ -1,14 +1,14 @@
 <?php
 
-namespace grozzzny\admin\modules\files\models;
+namespace grozzzny\admin\modules\images\models;
 
+use grozzzny\admin\helpers\Image;
 use grozzzny\admin\widgets\file_input\components\FileBehavior;
 use Yii;
-use yii\behaviors\SluggableBehavior;
 use yii\helpers\ArrayHelper;
 
 /**
- * This is the model class for table "admin_files".
+ * This is the model class for table "admin_image_files".
  *
  * @property int $id
  * @property string|null $slug
@@ -16,27 +16,23 @@ use yii\helpers\ArrayHelper;
  * @property string|null $file
  * @property int|null $active
  */
-class AdminFiles extends \yii\db\ActiveRecord
+class AdminImageFiles extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'admin_files';
+        return 'admin_image_files';
     }
 
     public function behaviors()
     {
         return ArrayHelper::merge(parent::behaviors(), [
-            'slug' => [
-                'class' => SluggableBehavior::className(),
-                'attribute' => 'name'
-            ],
             'file' => [
                 'class' => FileBehavior::className(),
                 'fileAttribute' => 'file',
-                'uploadPath' => '/uploads/file',
+                'uploadPath' => '/uploads/image_files',
             ],
         ]);
     }
@@ -48,10 +44,10 @@ class AdminFiles extends \yii\db\ActiveRecord
     {
         return [
             [['active'], 'integer'],
+            [['file'], 'image'],
             [['slug', 'name'], 'string', 'max' => 255],
             [['slug'], 'match', 'pattern' => '/[A-z\-_]+/'],
-            [['file'], 'file'],
-            [['name'], 'required'],
+            [['slug'], 'required'],
         ];
     }
 
@@ -64,17 +60,28 @@ class AdminFiles extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'slug' => Yii::t('app', 'Slug'),
             'name' => Yii::t('app', 'Name'),
-            'file' => Yii::t('app', 'File'),
+            'file' => Yii::t('app', 'Image file'),
             'active' => Yii::t('app', 'Active'),
         ];
     }
 
-    public static function get($slug)
+    public function getImage($width = null, $height = null)
+    {
+        if(!isset(Yii::$app->params['noimage'])) return Image::thumb($this->file, $width, $height);
+
+        $path = empty($this->file) ? Yii::$app->params['noimage'] : $this->file;
+
+        $image = Image::thumb($path, $width, $height);
+
+        return empty($image) ? Image::thumb(Yii::$app->params['noimage'], $width, $height) : $image;
+    }
+
+    public static function get($slug, $width = null, $height = null)
     {
         $model = static::findOne(['slug' => $slug]);
 
-        if(empty($model)) return null;
+        if(empty($model)) return isset(Yii::$app->params['noimage']) ? Yii::$app->params['noimage'] : null;
 
-        return $model->file;
+        return $model->getImage($width, $height);
     }
 }
