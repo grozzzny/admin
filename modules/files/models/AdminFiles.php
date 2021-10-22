@@ -31,7 +31,8 @@ class AdminFiles extends \yii\db\ActiveRecord
         return ArrayHelper::merge(parent::behaviors(), [
             'slug' => [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name'
+                'attribute' => 'name',
+                'immutable' => true
             ],
             'file' => [
                 'class' => FileBehavior::className(),
