@@ -80,6 +80,15 @@ class AdminModule extends Module
         echo Yii::$app->view->render($this->view_path_toolbar);
     }
 
+    public static function checkboxSettings()
+    {
+        return [
+            'labelOptions' => ['class' => 'custom-control-label'],
+            'options' => ['class' => 'custom-control-input'],
+            'template' => "<div class=\"custom-control custom-switch\">{input} {label}</div><div>{error}</div>",
+        ];
+    }
+
     public static function can($permissionName)
     {
         if ($permissionName === '?') {

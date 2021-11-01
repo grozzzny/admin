@@ -15,6 +15,8 @@ use grozzzny\admin\modules\feedback\models\AdminFeedback;
 use grozzzny\admin\modules\feedback\models\AdminFeedbackSearch;
 use grozzzny\admin\modules\pages\models\AdminPages;
 use grozzzny\admin\modules\pages\models\AdminPagesSearch;
+use grozzzny\admin\modules\question\models\AdminQuestion;
+use grozzzny\admin\modules\question\models\AdminQuestionSearch;
 use grozzzny\admin\modules\social_links\models\AdminSocialLinks;
 use grozzzny\admin\modules\social_links\models\AdminSocialLinksSearch;
 use grozzzny\admin\modules\testimonials\models\AdminTestimonials;
@@ -97,6 +99,10 @@ class Bootstrap implements BootstrapInterface
             $cn->set(AdminEditable::class);
             $cn->set(AdminEditableSearch::class);
 
+            // question
+            $cn->set(AdminQuestion::class);
+            $cn->set(AdminQuestionSearch::class);
+
             // class map models + query classes
             $modelClassMap = [];
             foreach ($map as $class => $definition) {
@@ -148,6 +154,9 @@ class Bootstrap implements BootstrapInterface
             'AdminEditable' => 'grozzzny\admin\modules\editable\models\AdminEditable',
             'AdminEditableSearch' => 'grozzzny\admin\modules\editable\models\AdminEditableSearch',
 
+            'AdminQuestion' => 'grozzzny\admin\modules\question\models\AdminQuestion',
+            'AdminQuestionSearch' => 'grozzzny\admin\modules\question\models\AdminQuestionSearch',
+
             'AdminArticles' => 'grozzzny\admin\modules\article\models\AdminArticles',
             'AdminArticlesSearch' => 'grozzzny\admin\modules\article\models\AdminArticlesSearch',
         ];
@@ -190,6 +199,10 @@ class Bootstrap implements BootstrapInterface
             'grozzzny\admin\modules\article\models' => [
                 'AdminArticles',
                 'AdminArticlesSearch',
+            ],
+            'grozzzny\admin\modules\question\models' => [
+                'AdminQuestion',
+                'AdminQuestionSearch',
             ],
         ];
 

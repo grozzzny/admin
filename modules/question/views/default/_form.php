@@ -5,21 +5,17 @@ use yii\helpers\Html;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model grozzzny\admin\modules\feedback\models\AdminFeedback */
+/* @var $model grozzzny\admin\modules\question\models\AdminQuestion */
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
-<div class="admin-feedback-form">
+<div class="admin-question-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'question')->textarea() ?>
 
-    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'message')->textarea() ?>
+    <?= $form->field($model, 'answer')->textarea() ?>
 
     <?= $form->field($model, 'active')->checkbox(AdminModule::checkboxSettings()) ?>
 
