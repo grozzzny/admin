@@ -16,6 +16,9 @@ class m211101_165804_module_question extends Migration
     {
         $this->createTable('admin_question', [
             'id' => $this->primaryKey(),
+            'name' => $this->string(),
+            'email' => $this->string(),
+            'phone' => $this->string(),
             'question' => $this->string(),
             'answer' => $this->string(),
             'active' => $this->boolean()->defaultValue(false),

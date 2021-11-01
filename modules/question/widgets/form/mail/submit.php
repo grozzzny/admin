@@ -9,4 +9,7 @@ use yii\web\View;
  */
 ?>
 
+<p><b><?=$model->getAttributeLabel('name')?>:</b> <?= $model->name ?></p>
+<p><b><?=$model->getAttributeLabel('email')?>:</b> <?= $model->email ?></p>
+<p><b><?=$model->getAttributeLabel('phone')?>:</b> <?= $model->phone ?></p>
 <p><b><?=$model->getAttributeLabel('question')?>:</b> <?= $model->question ?></p>

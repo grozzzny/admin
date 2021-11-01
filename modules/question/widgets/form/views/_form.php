@@ -14,6 +14,12 @@ use yii\web\View;
 
 <? $form = QuestionFormWidget::begin()?>
 
+    <?= $form->fieldActive('name')?>
+
+    <?= $form->fieldActive('email')?>
+
+    <?= $form->fieldActive('phone')?>
+
     <?= $form->fieldActive('question')->textarea()?>
 
     <?= Alert::widget([

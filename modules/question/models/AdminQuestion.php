@@ -13,6 +13,9 @@ use yii\helpers\ArrayHelper;
  * @property int $id
  * @property string|null $question
  * @property string|null $answer
+ * @property string|null $name
+ * @property string|null $email
+ * @property string|null $phone
  * @property int|null $active
  * @property int|null $created_at
  * @property int|null $updated_at
@@ -44,8 +47,9 @@ class AdminQuestion extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['question', 'answer'], 'string', 'max' => 255],
-            [['question'], 'required'],
+            [['question', 'answer', 'name', 'phone'], 'string', 'max' => 255],
+            'required' => [['question',  'name', 'phone'], 'required'],
+            [['email'], 'email'],
             [['active'], 'boolean'],
             [['active'], 'default', 'value' => false],
         ];
@@ -58,6 +62,9 @@ class AdminQuestion extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
+            'name' => Yii::t('app', 'Name'),
+            'email' => Yii::t('app', 'Email'),
+            'phone' => Yii::t('app', 'Phone'),
             'question' => Yii::t('app', 'Question'),
             'answer' => Yii::t('app', 'Answer'),
             'active' => Yii::t('app', 'Active'),
