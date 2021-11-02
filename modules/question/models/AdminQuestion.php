@@ -47,7 +47,8 @@ class AdminQuestion extends \yii\db\ActiveRecord
     {
         return [
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['question', 'answer', 'name', 'phone'], 'string', 'max' => 255],
+            [['name', 'phone'], 'string', 'max' => 255],
+            [['question', 'answer'], 'string', 'max' => 1000],
             'required' => [['question',  'name', 'phone'], 'required'],
             [['email'], 'email'],
             [['active'], 'boolean'],
