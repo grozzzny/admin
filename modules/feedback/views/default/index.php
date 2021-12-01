@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'message',
             //'active',
-            //'created_at',
+            'created_at:datetime',
             //'updated_at',
             //'created_by',
             //'updated_by',
