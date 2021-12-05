@@ -29,7 +29,8 @@ class AdminSettings extends \yii\db\ActiveRecord
         return ArrayHelper::merge(parent::behaviors(), [
             'slug' => [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name'
+                'attribute' => 'name',
+                'immutable' => true
             ],
         ]);
     }

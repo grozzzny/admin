@@ -48,7 +48,8 @@ class AdminArticles extends \yii\db\ActiveRecord
             ],
             'slug' => [
                 'class' => SluggableBehavior::className(),
-                'attribute' => 'name'
+                'attribute' => 'name',
+                'immutable' => true
             ],
             TimestampBehavior::className(),
         ]);
