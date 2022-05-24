@@ -1,1 +1,7 @@
-{"version":3,"sourceRoot":"","sources":["admin-live-edit.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;AACA;EACE;EACA;EACA","file":"admin-live-edit.css"}
+{
+"version": 3,
+"mappings": "AAAA,gBAAgB;EACd,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,OAAO;EACf,sBAAO;IACL,eAAe,EAAE,SAAS;IAC1B,qBAAqB,EAAE,OAAO;IAC9B,wBAAwB,EAAE,IAAI",
+"sources": ["admin-live-edit.scss"],
+"names": [],
+"file": "admin-live-edit.css"
+}

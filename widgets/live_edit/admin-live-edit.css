@@ -1,11 +1,9 @@
 .admin-live-edit {
   position: relative;
-  cursor: pointer;
-}
-.admin-live-edit:hover {
-  text-decoration: underline;
-  text-decoration-color: #017bff;
-  text-decoration-skip-ink: none;
-}
+  cursor: pointer; }
+  .admin-live-edit:hover {
+    text-decoration: underline;
+    text-decoration-color: #017bff;
+    text-decoration-skip-ink: none; }
 
 /*# sourceMappingURL=admin-live-edit.css.map */
