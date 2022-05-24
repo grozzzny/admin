@@ -7,6 +7,8 @@ use grozzzny\admin\helpers\ClassMapHelper;
 use grozzzny\admin\components\seo\AdminSeo;
 use grozzzny\admin\modules\article\models\AdminArticles;
 use grozzzny\admin\modules\article\models\AdminArticlesSearch;
+use grozzzny\admin\modules\carousel\models\AdminCarousel;
+use grozzzny\admin\modules\carousel\models\AdminCarouselSearch;
 use grozzzny\admin\modules\editable\models\AdminEditable;
 use grozzzny\admin\modules\editable\models\AdminEditableSearch;
 use grozzzny\admin\modules\features\models\AdminFeatures;
@@ -103,6 +105,10 @@ class Bootstrap implements BootstrapInterface
             $cn->set(AdminQuestion::class);
             $cn->set(AdminQuestionSearch::class);
 
+            // question
+            $cn->set(AdminCarousel::class);
+            $cn->set(AdminCarouselSearch::class);
+
             // class map models + query classes
             $modelClassMap = [];
             foreach ($map as $class => $definition) {
@@ -159,6 +165,9 @@ class Bootstrap implements BootstrapInterface
 
             'AdminArticles' => 'grozzzny\admin\modules\article\models\AdminArticles',
             'AdminArticlesSearch' => 'grozzzny\admin\modules\article\models\AdminArticlesSearch',
+
+            'AdminCarousel' => 'grozzzny\admin\modules\carousel\models\AdminCarousel',
+            'AdminCarouselSearch' => 'grozzzny\admin\modules\carousel\models\AdminCarouselSearch',
         ];
 
         $routes = [
@@ -203,6 +212,10 @@ class Bootstrap implements BootstrapInterface
             'grozzzny\admin\modules\question\models' => [
                 'AdminQuestion',
                 'AdminQuestionSearch',
+            ],
+            'grozzzny\admin\modules\carousel\models' => [
+                'AdminCarousel',
+                'AdminCarouselSearch',
             ],
         ];
 

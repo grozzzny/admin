@@ -44,7 +44,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
 
                             'id',
-            'image',
+            [
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => function($model){
+                    /** @var \app\models\AdminCarousel $model */
+                    return Html::img($model->getImage(50, 50), ['class' => 'thumb-image']);
+                }
+            ],
             'link',
             'title',
             'text',
