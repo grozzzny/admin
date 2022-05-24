@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\carousel\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\carousel\models\AdminCarousel;
@@ -40,7 +41,10 @@ class AdminCarouselSearch extends AdminCarousel
      */
     public function search($params)
     {
-        $query = AdminCarousel::find();
+        /** @var AdminCarousel $instance */
+        $instance = Yii::$container->get(AdminCarousel::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

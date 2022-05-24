@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\question\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\question\models\AdminQuestion;
@@ -40,7 +41,10 @@ class AdminQuestionSearch extends AdminQuestion
      */
     public function search($params)
     {
-        $query = AdminQuestion::find();
+        /** @var AdminQuestion $instance */
+        $instance = Yii::$container->get(AdminQuestion::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\feedback\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\feedback\models\AdminFeedback;
@@ -40,7 +41,10 @@ class AdminFeedbackSearch extends AdminFeedback
      */
     public function search($params)
     {
-        $query = AdminFeedback::find();
+        /** @var AdminFeedback $instance */
+        $instance = Yii::$container->get(AdminFeedback::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

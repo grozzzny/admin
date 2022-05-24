@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\files\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\files\models\AdminFiles;
@@ -40,7 +41,10 @@ class AdminFilesSearch extends AdminFiles
      */
     public function search($params)
     {
-        $query = AdminFiles::find();
+        /** @var AdminFiles $instance */
+        $instance = Yii::$container->get(AdminFiles::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

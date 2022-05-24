@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\article\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\article\models\AdminArticles;
@@ -40,7 +41,10 @@ class AdminArticlesSearch extends AdminArticles
      */
     public function search($params)
     {
-        $query = AdminArticles::find();
+        /** @var AdminArticles $instance */
+        $instance = Yii::$container->get(AdminArticles::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

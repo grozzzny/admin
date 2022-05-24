@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\gallery\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\gallery\models\AdminGallery;
@@ -40,7 +41,10 @@ class AdminGallerySearch extends AdminGallery
      */
     public function search($params)
     {
-        $query = AdminGallery::find();
+        /** @var AdminGallery $instance */
+        $instance = Yii::$container->get(AdminGallery::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

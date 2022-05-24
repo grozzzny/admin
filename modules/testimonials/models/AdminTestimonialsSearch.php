@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\testimonials\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\testimonials\models\AdminTestimonials;
@@ -40,7 +41,10 @@ class AdminTestimonialsSearch extends AdminTestimonials
      */
     public function search($params)
     {
-        $query = AdminTestimonials::find();
+        /** @var AdminTestimonials $instance */
+        $instance = Yii::$container->get(AdminTestimonials::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

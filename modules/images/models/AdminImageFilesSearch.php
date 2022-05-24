@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\images\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\images\models\AdminImageFiles;
@@ -40,7 +41,10 @@ class AdminImageFilesSearch extends AdminImageFiles
      */
     public function search($params)
     {
-        $query = AdminImageFiles::find();
+        /** @var AdminImageFiles $instance */
+        $instance = Yii::$container->get(AdminImageFiles::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

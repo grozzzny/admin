@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\settings\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\settings\models\AdminSettings;
@@ -40,7 +41,10 @@ class AdminSettingsSearch extends AdminSettings
      */
     public function search($params)
     {
-        $query = AdminSettings::find();
+        /** @var AdminSettings $instance */
+        $instance = Yii::$container->get(AdminSettings::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

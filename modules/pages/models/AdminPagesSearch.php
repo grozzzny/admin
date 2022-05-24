@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\pages\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\pages\models\AdminPages;
@@ -40,7 +41,10 @@ class AdminPagesSearch extends AdminPages
      */
     public function search($params)
     {
-        $query = AdminPages::find();
+        /** @var AdminPages $instance */
+        $instance = Yii::$container->get(AdminPages::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

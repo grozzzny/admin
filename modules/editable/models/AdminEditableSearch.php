@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\editable\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\editable\models\AdminEditable;
@@ -40,7 +41,10 @@ class AdminEditableSearch extends AdminEditable
      */
     public function search($params)
     {
-        $query = AdminEditable::find();
+        /** @var AdminEditable $instance */
+        $instance = Yii::$container->get(AdminEditable::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

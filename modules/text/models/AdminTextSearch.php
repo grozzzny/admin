@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\text\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\text\models\AdminText;
@@ -40,7 +41,10 @@ class AdminTextSearch extends AdminText
      */
     public function search($params)
     {
-        $query = AdminText::find();
+        /** @var AdminText $instance */
+        $instance = Yii::$container->get(AdminText::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

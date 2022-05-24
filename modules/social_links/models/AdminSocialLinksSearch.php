@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\social_links\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\social_links\models\AdminSocialLinks;
@@ -40,7 +41,10 @@ class AdminSocialLinksSearch extends AdminSocialLinks
      */
     public function search($params)
     {
-        $query = AdminSocialLinks::find();
+        /** @var AdminSocialLinks $instance */
+        $instance = Yii::$container->get(AdminSocialLinks::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 

@@ -2,6 +2,7 @@
 
 namespace grozzzny\admin\modules\features\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use grozzzny\admin\modules\features\models\AdminFeatures;
@@ -40,7 +41,10 @@ class AdminFeaturesSearch extends AdminFeatures
      */
     public function search($params)
     {
-        $query = AdminFeatures::find();
+        /** @var AdminFeatures $instance */
+        $instance = Yii::$container->get(AdminFeatures::class);
+
+        $query = $instance::find();
 
         // add conditions that should always apply here
 
