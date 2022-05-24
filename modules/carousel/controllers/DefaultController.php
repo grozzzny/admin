@@ -35,7 +35,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new AdminCarouselSearch();
+        /** @var AdminCarouselSearch $searchModel */
+        $searchModel = Yii::$container->get(AdminCarouselSearch::class);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -52,7 +53,8 @@ class DefaultController extends Controller
      */
     public function actionCreate()
     {
-        $model = new AdminCarousel();
+        /** @var AdminCarousel $model */
+        $model = Yii::$container->get(AdminCarousel::class);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -106,7 +108,10 @@ class DefaultController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = AdminCarousel::findOne($id)) !== null) {
+        /** @var AdminCarousel $instance */
+        $instance = Yii::$container->get(AdminCarousel::class);
+
+        if (($model = $instance::findOne($id)) !== null) {
             return $model;
         }
 
